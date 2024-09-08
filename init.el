@@ -1,5 +1,6 @@
 ;;Start screen
-(setq inhibit-startup-message t)
+(setq initial-buffer-choice 'recentf-open-files)
+(setq initial-scratch-message nil)
 
 ;; Packages config
 (require 'package)
@@ -17,7 +18,6 @@
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (defun display-recentf-on-startup ()
-  "Display the list of recent files on startup."
   (recentf-open-files))
 
 (add-hook 'emacs-startup-hook 'display-recentf-on-startup)
@@ -58,6 +58,9 @@
 (require 'smartparens-config)
 (smartparens-global-mode 1)
 
+;;Treemacs
+(add-hook 'emacs-startup-hook 'treemacs)
+
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
   :ensure t
@@ -72,9 +75,8 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
-;; Control Buffers Function
+;; Control Buffers Function @galeanaara
 (defun other-window-backward (&optional n)
-  "Select Nth previous window."
   (interactive "P")
   (other-window (- (prefix-numeric-value n))))
 
@@ -92,7 +94,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(doom-xcode))
  '(custom-safe-themes
-   '("d17a21b31262daa40e85a15f6d2f1ec640d158b64dc8ee315790449b7ba6b03e"))
+   '("d3ad0b7d28322ef20c0876eb32bf6e7da8d58b104e320d851225f950af7417b7" "d17a21b31262daa40e85a15f6d2f1ec640d158b64dc8ee315790449b7ba6b03e"))
  '(package-selected-packages
    '(recentf-ext recentf-remove-sudo-tramp-prefix yasnippet-snippets xterm-keybinder which-key treemacs-magit tree-sitter timu-macos-theme speedbar-git-respect smartparens rainbow-delimiters one-themes nyan-mode neotree lsp-python-ms lsp-javacomp lsp-java go-mode flycheck doom-themes doom-modeline dired-subtree company catppuccin-theme auto-complete all-the-icons-nerd-fonts all-the-icons-ivy-rich all-the-icons-ivy all-the-icons-ibuffer all-the-icons-dired all-the-icons-completion)))
 
@@ -102,4 +104,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
